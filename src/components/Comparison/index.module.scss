@@ -1,0 +1,18 @@
+.heading {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+}
+.text {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  hr {
+    width: 50%;
+    border: 1px solid #fff;
+    // margin: 0;
+  }
+}

@@ -1,58 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
-
+import React, { useEffect } from "react";
+import Authentication from "./components/Authentication";
+import { useAppDispatch } from "./redux/hooks";
+import {
+  setUser1Token,
+  setUser1Username,
+  setUser2Token,
+  setUser2Username,
+} from "./redux/User/userSlice";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const user1Token = window.localStorage.getItem("user1");
+    const user2Token = window.localStorage.getItem("user2");
+    console.log("here ");
+    if (user1Token) {
+      dispatch(setUser1Token(user1Token));
+      dispatch(setUser1Username(user1Token));
+    }
+    if (user2Token) {
+      dispatch(setUser2Token(user2Token));
+      dispatch(setUser2Username(user2Token));
+    }
+  }, []);
+  return <Authentication />;
 }
 
 export default App;
